@@ -29,3 +29,16 @@ model Tour {
   startDates      DateTime[]
   createdAt       DateTime   @default(now())
 }
+
+model User {
+  id                Int       @id @default(autoincrement())
+  name              String
+  email             String    @unique
+  photo             String?
+  role              String    @default("user")
+  password          String
+  passwordChangedAt DateTime?
+  createdAt         DateTime  @default(now())
+}
+
+//npx prisma migrate dev --name add_new_model

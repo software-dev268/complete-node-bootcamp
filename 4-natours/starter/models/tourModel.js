@@ -1,7 +1,26 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 // const validator = require('validator');
+exports.getTourTop5Cheap = async () => {
+  return await prisma.tour.findMany({
+    take: 5,
+    orderBy: [
+      { ratingsAverage: 'desc' },
+      { price: 'asc' }
+    ],
+    select: {
+      name: true,
+      price: true,
+      ratingsAverage: true,
+      summary: true,
+      difficulty: true,
+    },
+  });
+};
 
+//  limit: '5',
+// sort: '-ratingsAverage,price',
+// fields: 'name,price,ratingsAverage,summary,difficulty',
 
 exports.getTourStats = async () => {
   return await prisma.tour.groupBy({

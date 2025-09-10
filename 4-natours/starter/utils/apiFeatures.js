@@ -3,7 +3,6 @@
 class APIFeatures {
   constructor(queryString) {
     this.queryString = queryString;
-    console.log('API Features', JSON.stringify(this.queryString));
     this.prismaOptions = {};
   }
 
